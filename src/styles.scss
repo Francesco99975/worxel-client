@@ -13,6 +13,11 @@ body {
   margin: 0;
   font-family: "Comfortaa", sans-serif;
   padding-top: 5rem;
+  display: grid;
+  grid-template-rows: 5rem auto fit-content(8rem);
+  grid-template-areas: "header" "main" "footer";
+  padding-top: 0;
+  height: 100vh;
 }
 
 body::-webkit-scrollbar {
@@ -26,4 +31,8 @@ ul {
 a {
   text-decoration: none;
   color: black;
+}
+
+button:focus {
+  outline: none;
 }

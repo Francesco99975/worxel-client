@@ -1,6 +1,20 @@
 @import "../../variables.scss";
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background: #00000080;
+  display: none;
+  opacity: 0;
+  transition: all 0.2s linear;
+}
+
 .main-header {
+  grid-area: header;
   display: flex;
   width: 100%;
   height: 5rem;
@@ -118,7 +132,7 @@
   margin: 0.6rem 0;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 50rem) {
   .main-nav {
     display: flex;
   }

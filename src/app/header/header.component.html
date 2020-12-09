@@ -1,5 +1,6 @@
+<div class="backdrop" #backdrop (click)="onToggleMenu(backdrop, mobilenav)"></div>
 <header class="main-header">
-    <button class="toggle-button">
+    <button class="toggle-button" (click)="onToggleMenu(backdrop, mobilenav)">
         <span class="toggle-button__bar"></span>
         <span class="toggle-button__bar"></span>
         <span class="toggle-button__bar"></span>
@@ -14,7 +15,7 @@
     </nav>
 </header>
 
-<nav class="mobile-nav">
+<nav class="mobile-nav" #mobilenav>
     <ul class="mobile-nav__items">
         <li class="mobile-nav__item" *ngFor="let link of links">
             <a href="#">{{link}}</a>

@@ -1,0 +1,101 @@
+@import "../../variables.scss";
+
+.main-home {
+  width: 100%;
+  grid-area: main;
+  background-color: $bg-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5rem;
+}
+
+.plan {
+  width: 80%;
+  height: 35rem;
+  min-height: 15rem;
+  max-height: 30rem;
+  background-color: $primary-color;
+  padding: 1.5rem;
+  margin: 1.5rem;
+  border: 3px solid $secondary-color;
+  border-radius: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .plan__title {
+    color: $tertiary-color;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+  }
+
+  .plan__description {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+  }
+}
+
+.btn {
+  background-color: $bg-color;
+  border-radius: 15px;
+  color: $primary-color;
+  font: inherit;
+  padding: 0.8rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $tertiary-color;
+  }
+}
+
+.btn-premium {
+  font-weight: bold;
+  background-color: $tertiary-color;
+  color: $primary-color;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+}
+
+@media (min-width: 30rem) {
+  .plan__description {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 50rem) {
+  .main-home {
+    flex-direction: row;
+    height: 100vh;
+  }
+
+  .plan {
+    width: 40%;
+    margin: auto;
+
+    .plan__description {
+      font-size: 0.9rem;
+      line-height: 2.2rem;
+    }
+  }
+}
+
+@media (min-width: 80rem) {
+  .main-home {
+    flex-direction: row;
+  }
+
+  .plan {
+    width: 30%;
+    margin: auto;
+
+    .plan__description {
+      font-size: 1.2rem;
+      line-height: 3rem;
+    }
+  }
+}
