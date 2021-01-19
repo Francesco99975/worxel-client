@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap");
+@import "./variables.scss";
+
+.main {
+  width: 100%;
+  grid-area: main;
+  background-color: $bg-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5rem;
+}
 
 * {
   box-sizing: border-box;
@@ -35,4 +47,28 @@ a {
 
 button:focus {
   outline: none;
+}
+
+.btn {
+  font: inherit;
+  font-weight: bold;
+  border-radius: 25px;
+  background: transparent;
+  width: 50%;
+  cursor: pointer;
+  margin: 2rem;
+  padding: 1rem;
+}
+
+@media (min-width: 50rem) {
+  .main {
+    flex-direction: row;
+    height: 100vh;
+  }
+}
+
+@media (min-width: 80rem) {
+  .main {
+    flex-direction: row;
+  }
 }
