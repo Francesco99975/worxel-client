@@ -133,7 +133,7 @@
         </div>
 
         <div class="form__control" *ngIf="login">
-          <div class="sel" (click)="onToggleActive(sel)" #sel>
+          <div [ngClass]="{'form-error': form.get('type').errors && formError}" class="sel" (click)="onToggleActive(sel)" #sel>
             <span class="sel__placeholder" data-placeholder="Account Type">Account Type</span>
             <div class="sel__box">
               <span class="sel__box__options" (click)="onOptionSelected(opt1, 0)" #opt1>Business</span>
