@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -16,9 +18,12 @@ export class AuthComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+        this.login = params.login;
+    });
     this.form = new FormGroup({
       name: new FormControl('', Validators.required),
       type: new FormControl(null, Validators.required),
@@ -67,6 +72,8 @@ export class AuthComponent implements OnInit {
           }).subscribe((res: any) => {
             this.loading = false;
             console.log(res);
+            this.auth.login(res);
+            this.router.navigate(["/business"]);
           }, (err: any) => {
             console.log(err);
             this.error = true;
@@ -89,6 +96,7 @@ export class AuthComponent implements OnInit {
             password: this.form.get('password').value
           }).subscribe((res: any) => {
             this.loading = false;
+            this.login = true;
             console.log(res);
           }, (err: any) => {
             console.log(err);

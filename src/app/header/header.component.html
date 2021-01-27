@@ -5,11 +5,14 @@
         <span class="toggle-button__bar"></span>
         <span class="toggle-button__bar"></span>
     </button>
-    <h1 class="brand"><a href="#">Worxel</a></h1>
+    <h1 class="brand"><a href="#">{{title}}</a></h1>
     <nav class="main-nav">
         <ul class="main-nav__items">
             <li class="main-nav__item" *ngFor="let link of links">
-                <a href="#">{{link}}</a>
+                <a [routerLink]="link.route" [queryParams]="{login: link.params}" routerLinkActive="active">{{link.name}}</a>
+            </li>
+            <li class="main-nav__item" (click)="onLogout()" *ngIf="isBusinessLoggedIn">
+                <span class="logout">Logout</span>
             </li>
         </ul>
     </nav>
@@ -18,7 +21,11 @@
 <nav class="mobile-nav" #mobilenav>
     <ul class="mobile-nav__items">
         <li class="mobile-nav__item" *ngFor="let link of links">
-            <a href="#">{{link}}</a>
+            <a [routerLink]="link.route" [queryParams]="{login: link.params}">{{link.name}}</a>
+        </li>
+
+        <li class="mobile-nav__item" (click)="onLogout()" *ngIf="isBusinessLoggedIn">
+            <span class="logout">Logout</span>
         </li>
     </ul>
 </nav>

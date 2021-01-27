@@ -1,0 +1,64 @@
+@import "../../../variables.scss";
+
+.business-dash {
+  position: relative;
+  margin-top: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: $bg-color;
+}
+
+.cal {
+  width: 100vw;
+}
+
+.btn-event {
+  font: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: $secondary-color;
+  position: absolute;
+  top: 233px;
+  left: 10px;
+  z-index: 2;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.cal-date {
+  padding: 1rem 3rem;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+}
+
+.cal-nav-btn {
+  color: $tertiary-color;
+  border: 2px solid $tertiary-color;
+
+  &:hover {
+    color: $primary-color;
+    border-color: $primary-color;
+  }
+}

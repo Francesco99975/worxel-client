@@ -9,6 +9,9 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { AuthComponent } from './auth/auth.component';
+import { DashboardComponent } from './business/dashboard/dashboard.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,15 @@ import { AuthComponent } from './auth/auth.component';
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    AuthComponent
+    AuthComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]
