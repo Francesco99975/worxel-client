@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -18,7 +18,7 @@ export class AuthComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private auth: AuthService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -65,19 +65,13 @@ export class AuthComponent implements OnInit {
       this.form.get('repassword').setValue('unused');
       if(this.form.valid) {      
           this.loading = true;
-          this.http.post("http://localhost:5000/auth/login", {
-            type: this.form.get('type').value,
-            email: this.form.get('email').value, 
-            password: this.form.get('password').value
-          }).subscribe((res: any) => {
-            this.loading = false;
-            console.log(res);
-            this.auth.login(res);
-            this.router.navigate(["/business"]);
-          }, (err: any) => {
+          this.auth.login(this.form.get('type').value, this.form.get('email').value, this.form.get('password').value)
+          .subscribe(() => this.router.navigate(["/business"]), 
+          (err: any) => {
             console.log(err);
+            this.loading = false; 
             this.error = true;
-            this.errorMsg = "Could not signup!";
+            this.errorMsg = "Could not login!";
           });
       } else {
         this.formError = true;
@@ -90,16 +84,14 @@ export class AuthComponent implements OnInit {
           return;
         } else {
           this.loading = true;
-          this.http.post("http://localhost:5000/auth/signup", {
-            name: this.form.get('name').value, 
-            email: this.form.get('email').value, 
-            password: this.form.get('password').value
-          }).subscribe((res: any) => {
+          this.auth.signup(this.form.get('name').value, this.form.get('email').value, this.form.get('password').value)
+          .subscribe((res: any) => {
             this.loading = false;
             this.login = true;
             console.log(res);
           }, (err: any) => {
             console.log(err);
+            this.loading = false;
             this.error = true;
             this.errorMsg = "Could not signup!";
           });

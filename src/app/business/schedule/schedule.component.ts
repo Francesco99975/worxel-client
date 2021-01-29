@@ -6,10 +6,10 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-dashboard',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  templateUrl: './schedule.component.html',
+  styleUrls: ['./schedule.component.scss']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class ScheduleComponent implements OnInit, OnDestroy {
 
   view: CalendarView = CalendarView.Week;
   viewDate: Date = new Date();

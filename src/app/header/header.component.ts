@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Link } from '../models/link';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   title: string;
   homeLinks: Link[] = [new Link("Signup", "/auth"), new Link("Login", "/auth", true)];
@@ -22,6 +23,8 @@ export class HeaderComponent implements OnInit {
     new Link("Settings", "/business/settings")
 ];
 
+  authSub: Subscription;
+
   get links() {
     return this.isBusinessLoggedIn ? this.businessLinks : this.homeLinks
   };
@@ -29,14 +32,13 @@ export class HeaderComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.auth.loadCredentials();
     this.isBusinessLoggedIn = this.auth.loggedIn();
     if(this.isBusinessLoggedIn) {
       this.title = this.auth.username;
     } else {
       this.title = "Worxel";
     }
-    this.auth.changed.subscribe(() => {
+    this.authSub = this.auth.user.subscribe(() => {
       this.isBusinessLoggedIn = this.auth.loggedIn();
       if(this.isBusinessLoggedIn) {
         this.title = this.auth.username;
@@ -44,6 +46,10 @@ export class HeaderComponent implements OnInit {
         this.title = "Worxel";
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.authSub.unsubscribe();
   }
 
   onToggleMenu(backdrop: any, mobilenav: any): void {
