@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 
 import { AuthRoutingModule } from './auth-routing.module';
@@ -14,7 +13,6 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     CommonModule,
     AuthRoutingModule,
-    HttpClientModule,
     ReactiveFormsModule
   ]
 })

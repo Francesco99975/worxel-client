@@ -39,6 +39,7 @@ body::-webkit-scrollbar {
 
 main {
   min-height: calc(100vh - 5rem);
+  background-color: $bg-color;
 }
 
 ul {

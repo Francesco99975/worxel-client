@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Link } from '../models/link';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
+import { User } from '../auth/user.model';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +16,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   homeLinks: Link[] = [new Link("Signup", "/auth"), new Link("Login", "/auth", true)];
 
   isBusinessLoggedIn: boolean = false;
-  businessLinks: Link[] = [
-    new Link("Home", "/business"), 
-    new Link("Schedule", "/business/schedule"), 
+  businessLinks: Link[] = [ 
+    new Link("Schedule", "/business"), 
     new Link("Employees", "/business/employees"), 
     new Link("Departments", "/business/departments"), 
     new Link("Settings", "/business/settings")
@@ -32,18 +32,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.isBusinessLoggedIn = this.auth.loggedIn();
-    if(this.isBusinessLoggedIn) {
-      this.title = this.auth.username;
-    } else {
-      this.title = "Worxel";
-    }
-    this.authSub = this.auth.user.subscribe(() => {
-      this.isBusinessLoggedIn = this.auth.loggedIn();
-      if(this.isBusinessLoggedIn) {
-        this.title = this.auth.username;
+    this.authSub = this.auth.user.subscribe((userData: User) => {
+      if(userData && userData.token != null) {
+        this.title = userData.username;
+        this.isBusinessLoggedIn = true;
       } else {
         this.title = "Worxel";
+        this.isBusinessLoggedIn = false;
       }
     });
   }

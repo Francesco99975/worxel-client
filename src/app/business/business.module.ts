@@ -7,10 +7,12 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { RouterModule } from '@angular/router';
+import { DepartmentListComponent } from './department-list/department-list.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 
 @NgModule({
-  declarations: [BusinessComponent, ScheduleComponent],
+  declarations: [BusinessComponent, ScheduleComponent, DepartmentListComponent, EmployeeListComponent],
   imports: [
     RouterModule,
     BusinessRoutingModule,
