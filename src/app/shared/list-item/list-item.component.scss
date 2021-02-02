@@ -1,0 +1,61 @@
+@import "../../../variables.scss";
+
+.item__container {
+  width: 70vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin: 0.5rem;
+  background-color: $secondary-color;
+  border-radius: 15px;
+}
+
+.item__info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  max-width: 35%;
+
+  h1,
+  h3 {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+    color: white;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    color: gray;
+  }
+}
+
+.item__actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  button {
+    margin: 0.2rem;
+  }
+
+  .btn-update {
+    border-radius: 50%;
+    background-color: $tertiary-color;
+    border: none;
+  }
+
+  .btn-delete {
+    border-radius: 50%;
+    background-color: red;
+    border: none;
+  }
+}
+
+i {
+  color: white;
+}

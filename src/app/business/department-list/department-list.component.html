@@ -1,3 +1,11 @@
-<main>
-    
+<main class="departments-container">
+    <form [formGroup]="form" (ngForm)="onCreate()" class="department-creation">
+        <div class="form__control">
+            <input [ngClass]="{'form-error': form.get('name').errors && formError}" class="form__field" type="text" name="name" id="name" placeholder="Name" formControlName="name" >
+            <label class="form__label" for="name">Name</label>
+        </div>
+        <button type="submit" class="btn btn-add">Add Department</button>
+    </form>
+    <app-list-item *ngFor="let dept of depts; let i = index" [title]="dept.name" [index]="i" (update)="onStartRename()" (delete)="onStartRemove()">
+    </app-list-item>
 </main>

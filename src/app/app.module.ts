@@ -15,7 +15,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     CommonModule,
