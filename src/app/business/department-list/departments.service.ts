@@ -44,7 +44,7 @@ export class DepartmentsService {
   }
 
   removeDepartment(id: string) {
-    return this.http.delete(`http://localhost:5000/departments/update/${id}`)
+    return this.http.delete(`http://localhost:5000/departments/delete/${id}`)
       .pipe(tap(() => {
         this.departments = this.departments.filter((dept => dept.id !== id));
         this.onChange.next(this.departments.slice());

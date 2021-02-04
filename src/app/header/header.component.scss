@@ -1,18 +1,5 @@
 @import "../../variables.scss";
 
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  width: 100vw;
-  height: 100vh;
-  background: #00000080;
-  display: none;
-  opacity: 0;
-  transition: all 0.2s linear;
-}
-
 .main-header {
   grid-area: header;
   display: flex;
@@ -100,12 +87,6 @@
     color: $text-color;
     font-weight: bold;
   }
-}
-
-.open {
-  display: block !important;
-  opacity: 1 !important;
-  transform: translateX(0) !important;
 }
 
 .main-nav__item,

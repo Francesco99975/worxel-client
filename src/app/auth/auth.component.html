@@ -106,7 +106,7 @@
 </div>
 
 <main class="main">
-    <form [formGroup]="form" class="auth" (ngForm)="onSubmit()">
+    <form [formGroup]="form" class="auth" (ngSubmit)="onSubmit()">
         <h1 class="form__title">
             <span *ngIf="login">Login</span>
             <span *ngIf="!login">Signup</span>
@@ -151,7 +151,7 @@
         
         </div>
 
-        <button type="submit" class="btn auth-btn" (click)="onSubmit()">
+        <button type="submit" class="btn auth-btn">
           <span *ngIf="login">Login</span>
             <span *ngIf="!login">Signup</span>
         </button>
