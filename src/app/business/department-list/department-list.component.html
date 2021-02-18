@@ -1,5 +1,5 @@
 <div class="backdrop" #backdrop (click)="onClose(backdrop)"></div>
-<div class="update-modal" *ngIf="updating >= 0">
+<div class="modal" *ngIf="updating >= 0">
     <form [formGroup]="updateForm" (ngSubmit)="onRename(backdrop)">
         <div class="form__control">
             <input [ngClass]="{'form-error': form.get('name').errors && formError}" class="form__field" type="text" name="updatedname" id="updatedname" placeholder="New Name" formControlName="name" >

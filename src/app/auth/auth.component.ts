@@ -66,7 +66,7 @@ export class AuthComponent implements OnInit {
       if(this.form.valid) {      
           this.loading = true;
           this.auth.login(this.form.get('type').value, this.form.get('email').value, this.form.get('password').value)
-          .subscribe(() => this.router.navigate(["/business"]), 
+          .subscribe(() => this.router.navigate(["/business/schedule"]), 
           (err: any) => {
             console.log(err);
             this.loading = false; 

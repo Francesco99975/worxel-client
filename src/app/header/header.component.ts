@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   isBusinessLoggedIn: boolean = false;
   businessLinks: Link[] = [ 
-    new Link("Schedule", "/business"), 
+    new Link("Schedule", "/business/schedule"), 
     new Link("Employees", "/business/employees"), 
     new Link("Departments", "/business/departments"), 
     new Link("Settings", "/business/settings")

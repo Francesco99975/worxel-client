@@ -1,7 +1,12 @@
-<div class="item__container">
-    <div class="item__info">
-        <h1>{{ title }}</h1>
-        <h3 *ngIf="subtitle != null">{{ subtitle }}</h3>
+<div class="item__container" [ngClass]="{'highlight': special}">
+    <div class="item__front">
+        <div class="avatar" [ngStyle]="{'background-color': avatar, 'color': pickTextColorBasedOnBgColorAdvanced(avatar)}" *ngIf="avatar">
+            <span class="hours">{{ hours }}H</span>
+        </div>
+        <div class="item__info">
+            <h1 [ngClass]="{'highlight-text': special}">{{ title | titlecase }}</h1>
+            <h3 *ngIf="subtitle != null">{{ subtitle | titlecase }}</h3>
+        </div>
     </div>
     <div class="item__actions">
         <button class="btn btn-update" (click)="onUpdate()"><i class="fas fa-pen"></i></button>

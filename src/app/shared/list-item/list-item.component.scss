@@ -11,6 +11,39 @@
   border-radius: 15px;
 }
 
+.highlight {
+  border: 5px dashed $tertiary-color;
+}
+
+.highlight-text {
+  color: $tertiary-color !important;
+}
+
+.item__front {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 0.5rem;
+  width: 50%;
+}
+
+.avatar {
+  border: none;
+  border-radius: 50%;
+  width: 7rem;
+  height: 7rem;
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .hours {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.1rem;
+  }
+}
+
 .item__info {
   display: flex;
   justify-content: center;
@@ -30,7 +63,7 @@
 
   h3 {
     font-size: 1.2rem;
-    color: gray;
+    color: $primary-color;
   }
 }
 
@@ -40,19 +73,35 @@
   align-items: center;
 
   button {
-    margin: 0.2rem;
+    margin: 0.3rem;
   }
 
   .btn-update {
-    border-radius: 50%;
-    background-color: $tertiary-color;
+    border-radius: 25px;
+    background-color: darken($tertiary-color, 10);
     border: none;
+
+    &:hover {
+      background-color: white;
+
+      i {
+        color: darken($tertiary-color, 10);
+      }
+    }
   }
 
   .btn-delete {
-    border-radius: 50%;
+    border-radius: 25px;
     background-color: red;
     border: none;
+
+    &:hover {
+      background-color: white;
+
+      i {
+        color: red;
+      }
+    }
   }
 }
 

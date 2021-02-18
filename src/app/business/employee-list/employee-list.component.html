@@ -1,3 +1,77 @@
-<main>
-    <p>employee-list works!</p>
+<div class="backdrop" #backdrop (click)="onClose(backdrop)"></div>
+<div id="empmd" class="modal" *ngIf="inModal">
+    <form [formGroup]="form" (ngSubmit)="updating < 0 ? onCreate(backdrop) : onUpdate(backdrop)">
+        <div class="form__control">
+            <input [ngClass]="{'form-error': form.get('firstname').errors && formError}" class="form__field" type="text" name="firstname" id="firstname" placeholder="First Name" formControlName="firstname" >
+            <label class="form__label" for="firstname">First Name</label>
+        </div>
+        <div class="form__control">
+            <input [ngClass]="{'form-error': form.get('lastname').errors && formError}" class="form__field" type="text" name="lastname" id="lastname" placeholder="Last Name" formControlName="lastname" >
+            <label class="form__label" for="lastname">Last Name</label>
+        </div>
+        <div class="checkbox__spec manager">
+            <label class="spec__label" for="manager">Manager</label>
+            <label class="checkbox bounce">
+                <input type="checkbox" name="manager" id="manager" formControlName="manager">
+                <svg viewBox="0 0 21 21">
+                    <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
+                </svg>
+            </label>
+        </div>
+        <div class="form__array" formArrayName="departments">
+            <h2>Assign Departments</h2>
+            <div class="checkbox__spec" *ngFor="let dept of depts; let i = index">
+                <label class="spec__label" [for]="dept.id">{{dept.name | titlecase}}</label>
+                <label class="checkbox bounce">
+                    <input type="checkbox" [name]="dept.id" [id]="dept.id" [formControlName]="i">
+                    <svg viewBox="0 0 21 21">
+                        <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
+                    </svg>
+                </label>
+            </div>
+        </div>
+        <div class="form__control">
+            <h2>Select Employee Color</h2>
+            <input 
+            class="color-picker__dm"
+            name="color"
+            id="color"
+            [style.background]="form.get('color').value"
+            [style.color]="form.get('color').value"
+            [cpPosition]="'top'"
+            [cpPositionOffset]="'50%'"
+            [cpPositionRelativeToArrow]="true"
+            [(colorPicker)]="form.get('color').value"
+            (colorPickerChange)="this.form.get('color').setValue($event)"
+            formControlName="color"
+            >
+        </div>
+        <div class="form__control" *ngIf="updating < 0">
+            <h2>Login Credentials</h2>
+            <div class="form__control">
+                <input [ngClass]="{'form-error': form.get('email').errors && formError}" class="form__field" type="text" name="email" id="email" placeholder="Email" formControlName="email" >
+                <label class="form__label" for="email">Email</label>
+            </div>
+            <div class="form__control">
+                <input [ngClass]="{'form-error': form.get('password').errors && formError}" class="form__field" type="text" name="password" id="password" placeholder="Password" formControlName="password" >
+                <label class="form__label" for="password">Password</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-add">{{updating < 0 ? "Add" : "Update"}} Employee</button>
+    </form>
+</div>
+<main class="emps-container">
+    <button class="btn floating-action" (click)="onStartModal(backdrop, -1)"><i class="fas fa-plus"></i></button>
+    <div *ngIf="emps.length > 0">
+        <app-list-item *ngFor="let emp of emps; let i = index"
+            [title]="emp.fullname" 
+            [subtitle]="emp.getDepartment()" 
+            [avatar]="emp.color" 
+            [index]="i" 
+            [special]="emp.manager"
+            [hours]="emp.hours" 
+            (update)="onStartModal(backdrop, i)" 
+            (delete)="onRemove(i)">
+        </app-list-item>
+    </div>
 </main>

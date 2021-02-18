@@ -12,6 +12,8 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { ListItemComponent } from "../shared/list-item/list-item.component";
 import { CommonModule } from '@angular/common';
 
+import { ColorPickerModule } from 'ngx-color-picker';
+
 
 @NgModule({
   declarations: [BusinessComponent, ScheduleComponent, DepartmentListComponent, EmployeeListComponent, ListItemComponent],
@@ -20,7 +22,8 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     BusinessRoutingModule,
     ReactiveFormsModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    ColorPickerModule
   ]
 })
 export class BusinessModule { }
